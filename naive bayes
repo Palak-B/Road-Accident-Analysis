@@ -1,0 +1,21 @@
+setwd("F://Academic//EvenSem2018//")
+sample <- read.table("acc1.csv",header=TRUE,sep=",")
+traindata <- as.data.frame(sample[1:2500,])
+testdata <- as.data.frame(sample[1818:1850,])
+testdata
+
+val<-testdata[8]
+yy<-c(1818:1830)
+library(e1071)
+model <- naiveBayes(Casualty.Severity ~ Road.Surface+Lighting.Conditions+Weather.Conditions,traindata)
+#play is the class and rest of the attributes become features
+model
+results <- predict (model,testdata)
+results
+v<-c(1,2,3,4,5)
+x<-seq(1, length(results), 1)
+qplot(x = x, y = results, main = "Title")
+
+qplot(x = x, y = val, main = "New")
+
+plot(results)
